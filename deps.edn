@@ -1,0 +1,17 @@
+{:paths ["src"]
+ :deps  {org.testfx/openjfx-monocle            {:mvn/version "jdk-12.0.1+2"}
+         ;; why don't these work in :extra-deps for build-java???
+         ;; has @PostConstruct Class
+         javax.annotation/javax.annotation-api {:mvn/version "1.3.2"}
+         ;; has @Service Class
+         org.springframework/spring-context    {:mvn/version "5.3.22"}}
+ :aliases
+ {:headless   {:jvm-opts ["--add-opens=javafx.graphics/com.sun.glass.ui=ALL-UNNAMED"]}
+  :build-java {:extra-deps
+               {io.github.clojure/tools.build         {:git/tag "v0.8.3" :git/sha "0d20256"}
+                ;; has @PostConstruct Class
+                javax.annotation/javax.annotation-api {:mvn/version "1.3.2"}
+                ;; has @Service Class
+                org.springframework/spring-context    {:mvn/version "5.3.22"}}
+               :exec-fn   eyebrowse.build/run
+               :exec-args nil}}}
